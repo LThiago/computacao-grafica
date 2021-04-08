@@ -1,4 +1,4 @@
-# ComputaÁ„o Gr·fica
+# Computa√ß√£o Gr√°fica
 
 ## About this repository
 

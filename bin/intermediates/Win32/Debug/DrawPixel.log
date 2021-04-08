@@ -1,9 +1,0 @@
-﻿  App.cpp
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(39,10): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(40,10): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(93,2): error C2065: 'cin': identificador não declarado
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(95,2): error C2065: 'cin': identificador não declarado
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(112,2): error C3861: 'tie': identificador não encontrado
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(114,2): error C3861: 'tie': identificador não encontrado
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(117,2): error C3861: 'tie': identificador não encontrado
-C:\Users\Thiago\Repositorios\computacao-grafica\DrawPixel\src\App.cpp(119,2): error C3861: 'tie': identificador não encontrado
