@@ -64,12 +64,8 @@ int createWindow(int* pixelPosition, int* resolution, const char* title)
 			glVertex2d(round(X), round(Y));
 
 			X += Xinc;
-			printf("X = %f\n", round(X));
 			Y += Yinc;
-			printf("Y = %f\n", round(Y));
 		}
-
-		printf("End\n");
 
 		glEnd();
 
