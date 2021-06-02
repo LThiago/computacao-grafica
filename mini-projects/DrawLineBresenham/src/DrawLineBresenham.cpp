@@ -24,31 +24,28 @@ int createWindow(int* pixelPosition, int* resolution, const char* title)
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
 
-
-
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
-		/* DDA algorithm */
-		int dx = pixelPosition[2] - pixelPosition[0];
-		int dy = pixelPosition[3] - pixelPosition[1];
+		/* Bresenham algorithm */
+		int m_new = 2 * (pixelPosition[3] - pixelPosition[1]);
+		int slope_error_new = m_new - (pixelPosition[2] - pixelPosition[0]);
 
-		int steps;
-
-		if (abs(dx) > abs(dy))
+		for (int x = pixelPosition[0], y = pixelPosition[1]; x <= pixelPosition[2]; x++)
 		{
-			steps = abs(dx);
-		}
-		else
-		{
-			steps = abs(dy);
-		}
+			glVertex2d(x, y);
 
-		float Xinc = dx / (float)steps;
-		float Yinc = dy / (float)steps;
+			// Add slope to increment angle formed
+			slope_error_new += m_new;
 
-		float X = pixelPosition[0];
-		float Y = pixelPosition[1];
+			// Slope error reached limit, time to
+			// increment y and update slope error.
+			if (slope_error_new >= 0)
+			{
+				y++;
+				slope_error_new -= 2 * (pixelPosition[2] - pixelPosition[0]);
+			}
+		}
 
 		/* Render here */
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -59,13 +56,23 @@ int createWindow(int* pixelPosition, int* resolution, const char* title)
 		glBegin(GL_POINTS);
 		glColor3f(1, 1, 1);
 
-		for (int k = 0; k <= steps; k++)
+		for (int x = pixelPosition[0], y = pixelPosition[1]; x <= pixelPosition[2]; x++)
 		{
-			glVertex2d(round(X), round(Y));
+			glVertex2d(x, y);
 
-			X += Xinc;
-			Y += Yinc;
+			// Add slope to increment angle formed
+			slope_error_new += m_new;
+
+			// Slope error reached limit, time to
+			// increment y and update slope error.
+			if (slope_error_new >= 0)
+			{
+				y++;
+				slope_error_new -= 2 * (pixelPosition[2] - pixelPosition[0]);
+			}
 		}
+
+		printf("End\n");
 
 		glEnd();
 

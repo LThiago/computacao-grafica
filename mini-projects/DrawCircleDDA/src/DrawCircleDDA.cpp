@@ -92,8 +92,6 @@ int createWindow(int* pixelPosition, int* resolution, const char* title)
 			}
 		}
 
-		printf("End\n");
-
 		glEnd();
 
 		/* Swap front and back buffers */
