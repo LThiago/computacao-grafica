@@ -1,3 +1,9 @@
-# ComputacaoGrafica
+# Final Project - 2020.2
 
-<p>Disciplina: Computação Gráfica - UEPB 2019.1</p>
+## About this repository
+
+In this repository you will find the final project requested in the Computer Graphics course at UEPB.
+
+---
+
+Made by [Luis Thiago](https://github.com/LThiago)

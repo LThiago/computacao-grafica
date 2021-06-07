@@ -761,19 +761,19 @@ public class App extends javax.swing.JFrame {
 
             switch (menu.getTipoAlgoritimo()) {
                 case TRANSLATION:
-                    transImg.translacao(imagem, menu.getValorX(), menu.getValorY());
+                    transImg.translation(imagem, menu.getValorX(), menu.getValorY());
                     break;
                 case SCALE:
-                    transImg.escala(imagem, menu.getValorX(), menu.getValorY());
+                    transImg.scale(imagem, menu.getValorX(), menu.getValorY());
                     break;
                 case ROTATION:
-                    transImg.rotacao(imagem, menu.getAngulo());
+                    transImg.rotation(imagem, menu.getAngulo());
                     break;
                 case REFLECTION:
-                    transImg.reflexao(imagem, menu.getEixo());
+                    transImg.reflection(imagem, menu.getEixo());
                     break;
                 case SHEAR:
-                    transImg.cisalhamento(imagem, menu.getValorX(), menu.getValorY());
+                    transImg.shear(imagem, menu.getValorX(), menu.getValorY());
                     break;
                 default:
                     break;

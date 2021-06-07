@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.swing.JFrame;
 
 /**
- * Animação baseada em transformacões stepwise combinadas.
+ * Animation based on combined stepwise transformations.
  *
  * @author Luis Thiago <lthiago.github.io>
  */
@@ -16,12 +16,6 @@ public class FrameHeartBeating extends JFrame {
     private int windowHeight;
     private boolean printLine = false;
 
-    /**
-     * Construtor padrão.
-     *
-     * @param windowWidth da janela a ser criada.
-     * @param windowHeight da janela a ser criada.
-     */
     public FrameHeartBeating(int windowWidth, int windowHeight, boolean printLine) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
@@ -31,15 +25,15 @@ public class FrameHeartBeating extends JFrame {
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
 
-        //Linhas com espessura de 2.0
+        // Lines with a thickness of 2.0
         g2d.setStroke(new BasicStroke(2.0f));
-        //Uso de antialiasing para ter linhas mais agradáveis.
+        // Use of antialiasing to have nicer lines.
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         /* 
-        * O yUp define uma conversão que permite a especificação de objetos em coordenadas "reais",
-	* onde o eixo y aponta para cima e a origem do sistema de coordenadas está localizada no canto
-	* inferior esquerdo da janela.
+        * yUp defines a conversion that allows the specification of objects in "real" coordinates,
+	* where the y-axis points upward and the origin of the coordinate system is located in the
+	* bottom left corner of the window.
          */
         AffineTransform yUp = new AffineTransform();
         yUp.setToScale(1, -1);
@@ -47,41 +41,42 @@ public class FrameHeartBeating extends JFrame {
         translate.setToTranslation(0, windowHeight);
         yUp.preConcatenate(translate);
 
-        // Aplica a transformação ao objeto Graphics2D para desenhar tudo em coordenadas "reais".
+        // Applies the transformation to the Graphics2D object to draw everything in "real" coordinates.
         g2d.transform(yUp);
 
-        // Esse retângulo serve como background, enquadrando toda a tela.
+        // This rectangle serves as a background, framing the whole screen.
         Rectangle2D.Double windowFrame = new Rectangle2D.Double(2, 2, windowWidth, windowHeight);
 
-        // Desenho do objeto a ser movimentado.
+        // Drawing of the object to be moved.
         Rectangle2D.Double heart = new Rectangle2D.Double(2, 2, 2, 2);
 
-        // Especifica o quanto deve se mover em cada etapa.
+        // It specifies how much to move in each step.
         AffineTransform singleTranslation = new AffineTransform();
-        // Quanto vai ter cada movimento
+        
+        // How much will each move have
         singleTranslation.setToTranslation(1, 0);
 
-        // Essa transformação é para acumular as translações de etapa única.
+        // This transformation is to accumulate the single-step translations.
         AffineTransform accumulatedTranslation = new AffineTransform();
 
-        // Posição inicial
+        // Starting position
         accumulatedTranslation.setToTranslation(0, 100);
         clearWindow(g2d);
         
-        // Neste loop, a posição do objeto é atualizada e a imagem atualizada é desenhada.
+        // In this loop, the position of the object is updated and the updated image is drawn.
         for (int i = 0; i < windowWidth + 390; i++) {
-            // Limpa a janela.
+            // Clean the window.
             if (!printLine) {
                 clearWindow(g2d);
             }
 
-            // Desenha o retângulo do background.
+            // Draw the background rectangle.
             g2d.draw(windowFrame);
 
-            // Desenha a moldura do objeto.
+            // Draw the object's frame.
             g2d.draw(accumulatedTranslation.createTransformedShape(heart));
 
-            // Seta como vai percorrer o ponto
+            // Arrow as it will travel through the point
             if (i > 80 & i <= 130 || i > 200 & i <= 220 || i > 290 & i <= 320 || i > 360 & i <= 370
                     || i > 440 & i <= 500 || i > 580 & i <= 600 || i > 660 & i <= 690 || i > 760 & i <= 800) {
                 singleTranslation.setToTranslation(0.3, 1);
@@ -92,7 +87,7 @@ public class FrameHeartBeating extends JFrame {
             }
             accumulatedTranslation.preConcatenate(singleTranslation);
 
-            // Controla o tempo para redesenhar o objeto e a janela.
+            // Controls the time to redraw the object and the window.
             sustain(10);
         }
         dispose();
@@ -100,8 +95,6 @@ public class FrameHeartBeating extends JFrame {
 
     /**
      * Método para limpar a janela.
-     *
-     * @param g2d Graphics2D usado para desenhar.
      */
     public void clearWindow(Graphics2D g2d) {
         g2d.setPaint(Color.BLACK);
@@ -110,12 +103,10 @@ public class FrameHeartBeating extends JFrame {
     }
 
     /**
-     * Um método para um atraso de t milissegundos. Este método é usado aqui
-     * apenas para manter o programa simples. Esse método envolve espera ativa,
-     * consumindo capicidade de processador desnecessária. Para aplicações
-     * reais, os encadeamentos devem ser usados.
-     *
-     * @param t Tempo de espera.
+     * A method for a delay of t milliseconds. This method is used here
+     * just to keep the program simple. This method involves active waiting,
+     * consuming unnecessary processor power. For real
+     * applications, chaining should be used.
      */
     public void sustain(long t) {
         long finish = (new Date()).getTime() + t;

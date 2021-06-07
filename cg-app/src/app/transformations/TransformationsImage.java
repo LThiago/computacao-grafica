@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 public class TransformationsImage {
 
     private static TransformationsImage instance;
-    private double[] origemPixelCentro = new double[]{0, 0};
-    private double[][] matrizM;
+    private double[] centerPixelOrigin = new double[]{0, 0};
+    private double[][] matrixM;
 
     private TransformationsImage() {
     }
@@ -36,10 +36,10 @@ public class TransformationsImage {
     }
 
     /**
-     * Aplica translação no objeto passado como parametro e de acordo com os fatores de translação.
+     * It applies translation to the object passed as parameter and according to the translation factors.
      */
-    public void translacao(Image img, double tx, double ty) {
-        double[][] matrizM = new double[img.getWidth()][img.getHeight()];
+    public void translation(Image img, double tx, double ty) {
+        double[][] matrixM = new double[img.getWidth()][img.getHeight()];
         try {
             double[][] pixels;
             for (int i = 0; i < img.getWidth(); i++) {
@@ -49,65 +49,65 @@ public class TransformationsImage {
                     pixels[0][1] = j;
                     pixels[0][2] = 1;
 
-                    int hwidth = img.getWidth() / 2;
-                    int hheight = img.getHeight() / 2;
+                    int width = img.getWidth() / 2;
+                    int height = img.getHeight() / 2;
 
-                    int xt = i - hwidth;
-                    int yt = j - hheight;
+                    int xt = i - width;
+                    int yt = j - height;
 
-                    double[][] transformado = new double[1][3];
+                    double[][] transformed = new double[1][3];
 
-                    // translada
-                    matrizM = Matrix.multipliesMatrices(pixels, geraMatrizTranslacao(tx, ty));
+                    // transfer
+                    matrixM = Matrix.multipliesMatrices(pixels, generateTranslationMatrix(tx, ty));
 
-                    int pixelX = (int) transformado[0][0];
-                    int pixelY = (int) transformado[0][1];
+                    int pixelX = (int) transformed[0][0];
+                    int pixelY = (int) transformed[0][1];
 
-                    // Transforma o pixel.
+                    // Transform the pixel.
                     if (pixelX < img.getWidth() && pixelX > 0 && pixelY < img.getHeight() && pixelY > 0) {
-                        matrizM[pixelX][pixelY] = img.getPixelMatrix()[i][j];
+                        matrixM[pixelX][pixelY] = img.getPixelMatrix()[i][j];
                     }
 
-                    // Guarda a origem.
+                    // Keep the origin.
                     if ((int) (img.getWidth() / 2) == i && (int) (img.getHeight() / 2) == j) {
-                        origemPixelCentro = new double[]{i - pixelX, j - pixelY};
+                        centerPixelOrigin = new double[]{i - pixelX, j - pixelY};
                     }
                 }
             }
-            CartesianPlane.getInstance().drawImage(img.getPixelMatrix(), matrizM);
+            CartesianPlane.getInstance().drawImage(img.getPixelMatrix(), matrixM);
         } catch (Exception ex) {
             Logger.getLogger(TransformationsImage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     /**
-     * Aplica rotacao no objeto passado como parametro, de acordo com angulo.
+     * Applies a rotation to the object passed as parameter, according to the angle.
      */
-    public void rotacao(Image imagem, double angulo) {
-        int width = imagem.getBufferedImage().getWidth();
-        int height = imagem.getBufferedImage().getHeight();
+    public void rotation(Image image, double angle) {
+        int width = image.getBufferedImage().getWidth();
+        int height = image.getBufferedImage().getHeight();
 
-        imagem.setBufferedImage(tratarImagem(imagem));
+        image.setBufferedImage(treatImage(image));
 
         /**
-         * Aplica a translação usando o AffineTransform
+         * Apply translation using AffineTransform
          */
         CartesianPlane panel = CartesianPlane.getInstance();
         Graphics2D g2d = (Graphics2D) panel.getGraphics();
         panel.redraw();
 
-        BufferedImage img = rotate(imagem.getBufferedImage(), angulo);
+        BufferedImage img = rotate(image.getBufferedImage(), angle);
         g2d.drawImage(img, panel.getCenterXValue(), panel.getCenterYValue() - height, null);
     }
 
     public BufferedImage rotate(BufferedImage image, double angle) {
         double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
         int w = image.getWidth(), h = image.getHeight();
-        int neww = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
+        int newW = (int) Math.floor(w * cos + h * sin), newh = (int) Math.floor(h * cos + w * sin);
         GraphicsConfiguration gc = getDefaultConfiguration();
-        BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
+        BufferedImage result = gc.createCompatibleImage(newW, newh, Transparency.TRANSLUCENT);
         Graphics2D g = result.createGraphics();
-        g.translate((neww - w) / 2, (newh - h) / 2);
+        g.translate((newW - w) / 2, (newh - h) / 2);
         g.rotate(angle, w / 2, h / 2);
         g.drawRenderedImage(image, null);
         g.dispose();
@@ -121,206 +121,206 @@ public class TransformationsImage {
     }
 
     /**
-     * Aplica escala no objeto passado como parametro, de acordo com os fatores de escala.
+     * Applies scale to the object passed as parameter, according to the scale factors.
      */
-    public void escala(Image imagem, double sx, double sy) {
-        double fatorX = imagem.getWidth() * sx;
-        double fatorY = imagem.getHeight() * sy;
+    public void scale(Image image, double sx, double sy) {
+        double xFactor = image.getWidth() * sx;
+        double yFactor = image.getHeight() * sy;
 
-        int width = (int) fatorX;
-        int height = (int) fatorY;
+        int width = (int) xFactor;
+        int height = (int) yFactor;
 
         /**
-         * Aplica a translação usando o AffineTransform
+         * Apply translation using AffineTransform
          */
         CartesianPlane panel = CartesianPlane.getInstance();
         Graphics2D g2d = (Graphics2D) panel.getGraphics();
         panel.redraw();
 
-        imagem.setBufferedImage(tratarImagem(imagem));
+        image.setBufferedImage(treatImage(image));
 
         BufferedImage after = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();
         at.scale(sx, sy);
         AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-        after = scaleOp.filter(imagem.getBufferedImage(), after);
+        after = scaleOp.filter(image.getBufferedImage(), after);
 
         g2d.drawImage(after, panel.getCenterXValue(), panel.getCenterYValue() - height, null);
     }
 
     /**
-     * Aplica reflexão no objeto passado como parametro, de acordo com o eixo escolhido.
+     * Applies reflection to the object passed as parameter, according to the chosen axis.
      */
-    public void reflexao(Image imagem, String eixo) {
-        BufferedImage image = tratarImagem(imagem);
+    public void reflection(Image image, String axis) {
+        BufferedImage bufferedImage = treatImage(image);
         AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
-        tx.translate(0, -imagem.getBufferedImage().getHeight(null));
+        tx.translate(0, -image.getBufferedImage().getHeight(null));
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        image = op.filter(image, null);
+        bufferedImage = op.filter(bufferedImage, null);
 
         tx = AffineTransform.getScaleInstance(-1, 1);
-        tx.translate(-image.getWidth(null), 0);
+        tx.translate(-bufferedImage.getWidth(null), 0);
         op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        image = op.filter(image, null);
+        bufferedImage = op.filter(bufferedImage, null);
         CartesianPlane panel = CartesianPlane.getInstance();
         Graphics2D g2d = (Graphics2D) panel.getGraphics();
         panel.redraw();
-        g2d.drawImage(image, panel.getCenterXValue(), panel.getCenterYValue() - image.getHeight(), null);
+        g2d.drawImage(bufferedImage, panel.getCenterXValue(), panel.getCenterYValue() - bufferedImage.getHeight(), null);
     }
 
     /**
-     * Aplica cisalhamento no objeto passado como parametro, de acordo com os fatores de a e b.
+     * Applies shear to the object passed as parameter, according to the factors a and b.
      */
-    public void cisalhamento(Image imagem, double cx, double cy) {
-        double fatorX = imagem.getWidth() * cx;
-        double fatorY = imagem.getHeight() * cy;
+    public void shear(Image image, double cx, double cy) {
+        double xFactor = image.getWidth() * cx;
+        double yFactor = image.getHeight() * cy;
 
         /**
-         * Aplica a translação usando o AffineTransform
+         * Apply translation using AffineTransform
          */
         CartesianPlane panel = CartesianPlane.getInstance();
         Graphics2D g2d = (Graphics2D) panel.getGraphics();
         panel.redraw();
 
-        imagem.setBufferedImage(tratarImagem(imagem));
+        image.setBufferedImage(treatImage(image));
 
         AffineTransform at = new AffineTransform();
-        at.translate(panel.getCenterXValue() + imagem.getWidth() * cx, panel.getCenterYValue() - imagem.getHeight());
+        at.translate(panel.getCenterXValue() + image.getWidth() * cx, panel.getCenterYValue() - image.getHeight());
         at.shear(-cx, -cy);
 
-        g2d.drawImage(imagem.getBufferedImage(), at, null);
+        g2d.drawImage(image.getBufferedImage(), at, null);
     }
     
     /**
-     * Gera matriz de translação.
+     * Generate translation matrix.
      */
-    public double[][] geraMatrizTranslacao(double tx, double ty) {
-        double[][] matriz = new double[3][3];
+    public double[][] generateTranslationMatrix(double tx, double ty) {
+        double[][] matrix = new double[3][3];
 
-        matriz[0][0] = 1;
-        matriz[0][1] = 0;
-        matriz[0][2] = tx;
+        matrix[0][0] = 1;
+        matrix[0][1] = 0;
+        matrix[0][2] = tx;
 
-        matriz[1][0] = 0;
-        matriz[1][1] = 1;
-        matriz[1][2] = ty;
+        matrix[1][0] = 0;
+        matrix[1][1] = 1;
+        matrix[1][2] = ty;
 
-        matriz[2][0] = 0;
-        matriz[2][1] = 0;
-        matriz[2][2] = 1;
+        matrix[2][0] = 0;
+        matrix[2][1] = 0;
+        matrix[2][2] = 1;
 
-        return matriz;
+        return matrix;
     }
 
     /**
-     * Gera matriz de escala.
+     * Generate scale matrix.
      */
-    public double[][] geraMatrizEscala(double sx, double sy) {
-        double[][] matriz = new double[3][3];
+    public double[][] generateScaleMatrix(double sx, double sy) {
+        double[][] matrix = new double[3][3];
         sx = (sx == 0) ? 1 : sx;
         sy = (sy == 0) ? 1 : sy;
 
-        matriz[0][0] = sx;
-        matriz[1][0] = 0;
-        matriz[2][0] = 0;
+        matrix[0][0] = sx;
+        matrix[1][0] = 0;
+        matrix[2][0] = 0;
 
-        matriz[0][1] = 0;
-        matriz[1][1] = sy;
-        matriz[2][1] = 0;
+        matrix[0][1] = 0;
+        matrix[1][1] = sy;
+        matrix[2][1] = 0;
 
-        matriz[0][2] = 0;
-        matriz[1][2] = 0;
-        matriz[2][2] = 1;
+        matrix[0][2] = 0;
+        matrix[1][2] = 0;
+        matrix[2][2] = 1;
 
-        return matriz;
+        return matrix;
     }
 
     /**
-     * Gera matriz de rotação.
+     * Generates rotation matrix.
      */
-    public double[][] geraMatrizRotacao(double angulo) {
-        double[][] matriz = new double[3][3];
+    public double[][] generateRotationMatrix(double angle) {
+        double[][] matrix = new double[3][3];
 
-        double sen = Math.sin(Math.toRadians(angulo));
-        double cos = Math.cos(Math.toRadians(angulo));
+        double sin = Math.sin(Math.toRadians(angle));
+        double cos = Math.cos(Math.toRadians(angle));
 
-        // Coluna 0
-        matriz[0][0] = cos;
-        matriz[1][0] = sen;
-        matriz[2][0] = 0;
+        // Column 0
+        matrix[0][0] = cos;
+        matrix[1][0] = sin;
+        matrix[2][0] = 0;
 
-        // Coluna 1
-        matriz[0][1] = -sen;
-        matriz[1][1] = cos;
-        matriz[2][1] = 0;
+        // Column 1
+        matrix[0][1] = -sin;
+        matrix[1][1] = cos;
+        matrix[2][1] = 0;
 
-        // Coluna 2
-        matriz[0][2] = 0;
-        matriz[1][2] = 0;
-        matriz[2][2] = 1;
+        // Column 2
+        matrix[0][2] = 0;
+        matrix[1][2] = 0;
+        matrix[2][2] = 1;
 
-        return matriz;
+        return matrix;
     }
 
     /**
-     * Gera matriz de reflexão em torno do eixo passado como parametro X, Y ou X e Y.
+     * Generate reflection matrix around the axis passed as parameter X, Y or X and Y.
      */
-    public double[][] geraMatrizReflexao(String eixo) {
-        double[][] matriz = new double[3][3];
+    public double[][] generateReflectionMatrix(String axis) {
+        double[][] matrix = new double[3][3];
 
-        eixo = eixo.toUpperCase();
+        axis = axis.toUpperCase();
 
-        // Rotação em XY
-        matriz[0][0] = -1;
-        matriz[1][0] = 0;
-        matriz[2][0] = 0;
+        // Rotation in XY
+        matrix[0][0] = -1;
+        matrix[1][0] = 0;
+        matrix[2][0] = 0;
 
-        matriz[0][1] = 0;
-        matriz[1][1] = -1;
-        matriz[2][1] = 0;
+        matrix[0][1] = 0;
+        matrix[1][1] = -1;
+        matrix[2][1] = 0;
 
-        matriz[0][2] = 0;
-        matriz[1][2] = 0;
-        matriz[2][2] = 1;
+        matrix[0][2] = 0;
+        matrix[1][2] = 0;
+        matrix[2][2] = 1;
 
-        // Rotação em X
-        if (eixo.equals(AxisEnum.X.getValue())) {
-            matriz[0][0] = 1;
-        } else if (eixo.equals(AxisEnum.Y.getValue())) {
-            matriz[1][1] = 1;
+        // X-rotation
+        if (axis.equals(AxisEnum.X.getValue())) {
+            matrix[0][0] = 1;
+        } else if (axis.equals(AxisEnum.Y.getValue())) {
+            matrix[1][1] = 1;
         }
 
-        return matriz;
+        return matrix;
     }
 
     /**
-     * Gera matriz de cisalhamento.
+     * Generates shear matrix.
      */
-    public double[][] geraMatrizCisalhamento(double cx, double cy) {
-        double[][] matriz = new double[3][3];
+    public double[][] generateShearMatrix(double cx, double cy) {
+        double[][] matrix = new double[3][3];
 
-        matriz[0][0] = 1;
-        matriz[1][0] = cy;
-        matriz[2][0] = 0;
+        matrix[0][0] = 1;
+        matrix[1][0] = cy;
+        matrix[2][0] = 0;
 
-        matriz[0][1] = cx;
-        matriz[1][1] = 1;
-        matriz[2][1] = 0;
+        matrix[0][1] = cx;
+        matrix[1][1] = 1;
+        matrix[2][1] = 0;
 
-        matriz[0][2] = 0;
-        matriz[1][2] = 0;
-        matriz[2][2] = 1;
+        matrix[0][2] = 0;
+        matrix[1][2] = 0;
+        matrix[2][2] = 1;
 
-        return matriz;
+        return matrix;
     }
 
-    private BufferedImage tratarImagem(Image imagem) {
-        BufferedImage bufferedImg = new BufferedImage(imagem.getBufferedImage().getWidth(), imagem.getBufferedImage().getHeight(), BufferedImage.TYPE_INT_RGB);
-        for (int row = 0; row < imagem.getBufferedImage().getWidth(); row++) {
-            for (int col = 0; col < imagem.getBufferedImage().getHeight(); col++) {
+    private BufferedImage treatImage(Image image) {
+        BufferedImage bufferedImg = new BufferedImage(image.getBufferedImage().getWidth(), image.getBufferedImage().getHeight(), BufferedImage.TYPE_INT_RGB);
+        for (int row = 0; row < image.getBufferedImage().getWidth(); row++) {
+            for (int col = 0; col < image.getBufferedImage().getHeight(); col++) {
                 // Prepara a imagem para ser desenhada no jpanel
                 if (row < 256 && col < 256) {
-                    bufferedImg.setRGB(row, col, CartesianPlane.getInstance().getCorPixel(imagem.getPixelMatrix()[row][col]));
+                    bufferedImg.setRGB(row, col, CartesianPlane.getInstance().getCorPixel(image.getPixelMatrix()[row][col]));
                 }
             }
         }
