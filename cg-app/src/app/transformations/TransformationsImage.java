@@ -1,4 +1,3 @@
-// TODO
 package app.transformations;
 
 import app.enums.AxisEnum;
@@ -320,7 +319,7 @@ public class TransformationsImage {
             for (int col = 0; col < image.getBufferedImage().getHeight(); col++) {
                 // Prepara a imagem para ser desenhada no jpanel
                 if (row < 256 && col < 256) {
-                    bufferedImg.setRGB(row, col, CartesianPlane.getInstance().getCorPixel(image.getPixelMatrix()[row][col]));
+                    bufferedImg.setRGB(row, col, CartesianPlane.getInstance().getPixelColor(image.getPixelMatrix()[row][col]));
                 }
             }
         }

@@ -94,7 +94,7 @@ public class FrameHeartBeating extends JFrame {
     }
 
     /**
-     * Método para limpar a janela.
+     * Method for cleaning the window.
      */
     public void clearWindow(Graphics2D g2d) {
         g2d.setPaint(Color.BLACK);

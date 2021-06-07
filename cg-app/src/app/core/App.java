@@ -425,7 +425,7 @@ public class App extends javax.swing.JFrame {
      */
     private void openTrans3D(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openTrans3D
         panelMenuLeft.setVisible(true);
-        CartesianPlane.getInstance().redesenha3D();
+        CartesianPlane.getInstance().redraw3D();
         changeMenuLeft(panelMenu3D);
     }//GEN-LAST:event_openTrans3D
 
@@ -434,7 +434,7 @@ public class App extends javax.swing.JFrame {
      */
     private void actionResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_actionResized
         CartesianPlane p = CartesianPlane.getInstance();
-        labelResTela.setText("Tela: " + p.getWidth() + "x" + p.getAltura());
+        labelResTela.setText("Tela: " + p.getWidth() + "x" + p.getHeight());
     }//GEN-LAST:event_actionResized
 
      /**
@@ -736,13 +736,13 @@ public class App extends javax.swing.JFrame {
 
                 // Calcula o ndc - Normalização do dispositivo
                 double ndcx = NormalizationFunctions.calculateNDCX(planoCartesiano.getWidth(), dcx);
-                double ndcy = NormalizationFunctions.calculateNDCX(planoCartesiano.getAltura(), dcy);
+                double ndcy = NormalizationFunctions.calculateNDCX(planoCartesiano.getHeight(), dcy);
 
                 labelNDCX.setText(String.format("%.6f", ndcx));
                 labelNDCY.setText(String.format("%.6f", ndcy));
 
                 labelDCX.setText(String.valueOf(NormalizationFunctions.calculateDCX(planoCartesiano.getWidth(), (float) ndcx)));
-                labelDCY.setText(String.valueOf(NormalizationFunctions.calculateDCY(planoCartesiano.getAltura(), (float) ndcy)));
+                labelDCY.setText(String.valueOf(NormalizationFunctions.calculateDCY(planoCartesiano.getHeight(), (float) ndcy)));
 
                 labelX.setText(String.valueOf(Math.round(dcx)));
                 labelY.setText(String.valueOf(Math.round(dcy)));

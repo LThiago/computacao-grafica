@@ -365,7 +365,7 @@ public class PanelMenuRecorteReta extends javax.swing.JPanel {
         listaPontos.add(new Pixel((double) xMax.getValue(), (double) yMax.getValue()));
         listaPontos.add(new Pixel((double) xMin.getValue(), (double) yMax.getValue()));
 
-        CartesianPlane.getInstance().desenhaViewPort(listaPontos);
+        CartesianPlane.getInstance().drawViewport(listaPontos);
     }//GEN-LAST:event_btCriarJanela
 
     /**
@@ -373,7 +373,7 @@ public class PanelMenuRecorteReta extends javax.swing.JPanel {
      */
     private void desenhaReta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desenhaReta
         setColor(Color.RED);
-        CartesianPlane.getInstance().desenhaViewPort(listaPontos);
+        CartesianPlane.getInstance().drawViewport(listaPontos);
         // Seta as coordenadas dos pontos e seta no obejto Pixel
         setPontoInicial(new Pixel((double) pontoInicialX.getValue(), (double) pontoInicialY.getValue()));
         setPontoFinal(new Pixel((double) pontoFinalX.getValue(), (double) pontoFinalY.getValue()));
