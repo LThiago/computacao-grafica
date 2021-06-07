@@ -7,7 +7,7 @@ import java.awt.Color;
 import javax.swing.JTextArea;
 
 /**
- * Painel com as configurações necessárias para plotar uma reta.
+ * Panel with the settings required to plot a line.
  *
  * @author Luis Thiago <lthiago.github.io>
  */
@@ -15,17 +15,14 @@ public class LineMenu extends javax.swing.JPanel {
 
     private static LineMenu instance;
 
-    private Pixel pontoInicial;
-    private Pixel pontoFinal;
+    private Pixel pStart;
+    private Pixel pFinal;
     private Color color;
-    private RasterizationEnum tipoAlgoritimo;
+    private RasterizationEnum algorithmType;
 
-    /**
-     * Construtor padrão.
-     */
     private LineMenu() {
         initComponents();
-        textAreaResult.setEditable(false);
+        resultArea.setEditable(false);
     }
     
     public static synchronized LineMenu getInstance() {
@@ -35,28 +32,28 @@ public class LineMenu extends javax.swing.JPanel {
         return instance;
     }
 
-    public Pixel getPontoInicial() {
-        return pontoInicial;
+    public Pixel getpStart() {
+        return pStart;
     }
 
-    public void setPontoInicial(Pixel pontoInicial) {
-        this.pontoInicial = pontoInicial;
+    public void setpStart(Pixel pStart) {
+        this.pStart = pStart;
     }
 
-    public Pixel getPontoFinal() {
-        return pontoFinal;
+    public Pixel getpFinal() {
+        return pFinal;
     }
 
-    public void setPontoFinal(Pixel pontoFinal) {
-        this.pontoFinal = pontoFinal;
+    public void setpFinal(Pixel pFinal) {
+        this.pFinal = pFinal;
     }
 
-    public RasterizationEnum getTipoAlgoritimo() {
-        return tipoAlgoritimo;
+    public RasterizationEnum getAlgorithmType() {
+        return algorithmType;
     }
 
-    public void setTipoAlgoritimo(RasterizationEnum tipoAlgoritimo) {
-        this.tipoAlgoritimo = tipoAlgoritimo;
+    public void setAlgorithmType(RasterizationEnum algorithmType) {
+        this.algorithmType = algorithmType;
     }
 
     public Color getColor() {
@@ -68,7 +65,7 @@ public class LineMenu extends javax.swing.JPanel {
     }
 
     public JTextArea getTextAreaResult() {
-        return textAreaResult;
+        return resultArea;
     }
 
     @SuppressWarnings("unchecked")
@@ -77,24 +74,23 @@ public class LineMenu extends javax.swing.JPanel {
 
         buttonGroupAlgoritmos = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        rbDDA = new javax.swing.JRadioButton();
-        rbPontoMedio = new javax.swing.JRadioButton();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        pontoInicialX = new javax.swing.JSpinner();
-        pontoInicialY = new javax.swing.JSpinner();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        pontoFinalX = new javax.swing.JSpinner();
-        pontoFinalY = new javax.swing.JSpinner();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textAreaResult = new javax.swing.JTextArea();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        btResolve = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        algorithmLabel = new javax.swing.JLabel();
+        algorithmPanel = new javax.swing.JPanel();
+        ddaRB = new javax.swing.JRadioButton();
+        midpointR = new javax.swing.JRadioButton();
+        dataLabel = new javax.swing.JLabel();
+        dataPanel = new javax.swing.JPanel();
+        xLabel = new javax.swing.JLabel();
+        yLabel = new javax.swing.JLabel();
+        startLabel = new javax.swing.JLabel();
+        startXValue = new javax.swing.JSpinner();
+        startYValue = new javax.swing.JSpinner();
+        endLabel = new javax.swing.JLabel();
+        endXValue = new javax.swing.JSpinner();
+        endYValue = new javax.swing.JSpinner();
+        drawButton = new javax.swing.JButton();
+        scroll = new javax.swing.JScrollPane();
+        resultArea = new javax.swing.JTextArea();
 
         jLabel1.setText("jLabel1");
 
@@ -102,224 +98,220 @@ public class LineMenu extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(240, 0));
         setPreferredSize(new java.awt.Dimension(240, 779));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        algorithmLabel.setText("Select the algorithm:");
 
-        buttonGroupAlgoritmos.add(rbDDA);
-        rbDDA.setSelected(true);
-        rbDDA.setText("DDA (Digital Differential Analyser)");
+        algorithmPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        buttonGroupAlgoritmos.add(rbPontoMedio);
-        rbPontoMedio.setText("Bresenham (Ponto Médio)");
+        buttonGroupAlgoritmos.add(ddaRB);
+        ddaRB.setSelected(true);
+        ddaRB.setText("DDA (Digital Differential Analyser)");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        buttonGroupAlgoritmos.add(midpointR);
+        midpointR.setText("Bresenham (Midpoint)");
+        midpointR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                midpointRActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout algorithmPanelLayout = new javax.swing.GroupLayout(algorithmPanel);
+        algorithmPanel.setLayout(algorithmPanelLayout);
+        algorithmPanelLayout.setHorizontalGroup(
+            algorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(algorithmPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbPontoMedio)
-                    .addComponent(rbDDA))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(algorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(midpointR)
+                    .addComponent(ddaRB))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        algorithmPanelLayout.setVerticalGroup(
+            algorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(algorithmPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rbDDA)
+                .addComponent(ddaRB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(rbPontoMedio)
+                .addComponent(midpointR)
                 .addContainerGap())
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        dataLabel.setText("Inform the data:");
 
-        jLabel2.setText("Inicial:");
+        dataPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel3.setText("Final:");
+        xLabel.setText("X");
 
-        pontoInicialX.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        pontoInicialX.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
-        pontoInicialX.setMaximumSize(new java.awt.Dimension(30, 25));
-        pontoInicialX.setMinimumSize(new java.awt.Dimension(30, 25));
-        pontoInicialX.setPreferredSize(new java.awt.Dimension(30, 25));
+        yLabel.setText("Y");
 
-        pontoInicialY.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        pontoInicialY.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
-        pontoInicialY.setMaximumSize(new java.awt.Dimension(30, 25));
-        pontoInicialY.setMinimumSize(new java.awt.Dimension(30, 25));
-        pontoInicialY.setPreferredSize(new java.awt.Dimension(30, 25));
+        startLabel.setText("Start:");
 
-        jLabel4.setText("X");
+        startXValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        startXValue.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+        startXValue.setMaximumSize(new java.awt.Dimension(30, 25));
+        startXValue.setMinimumSize(new java.awt.Dimension(30, 25));
+        startXValue.setPreferredSize(new java.awt.Dimension(30, 25));
 
-        jLabel5.setText("Y");
+        startYValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        startYValue.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+        startYValue.setMaximumSize(new java.awt.Dimension(30, 25));
+        startYValue.setMinimumSize(new java.awt.Dimension(30, 25));
+        startYValue.setPreferredSize(new java.awt.Dimension(30, 25));
 
-        pontoFinalX.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        pontoFinalX.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
-        pontoFinalX.setMaximumSize(new java.awt.Dimension(30, 25));
-        pontoFinalX.setMinimumSize(new java.awt.Dimension(30, 25));
-        pontoFinalX.setPreferredSize(new java.awt.Dimension(30, 25));
+        endLabel.setText("End:");
 
-        pontoFinalY.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        pontoFinalY.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
-        pontoFinalY.setMaximumSize(new java.awt.Dimension(30, 25));
-        pontoFinalY.setMinimumSize(new java.awt.Dimension(30, 25));
-        pontoFinalY.setPreferredSize(new java.awt.Dimension(30, 25));
+        endXValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        endXValue.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+        endXValue.setMaximumSize(new java.awt.Dimension(30, 25));
+        endXValue.setMinimumSize(new java.awt.Dimension(30, 25));
+        endXValue.setPreferredSize(new java.awt.Dimension(30, 25));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        endYValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        endYValue.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+        endYValue.setMaximumSize(new java.awt.Dimension(30, 25));
+        endYValue.setMinimumSize(new java.awt.Dimension(30, 25));
+        endYValue.setPreferredSize(new java.awt.Dimension(30, 25));
+
+        javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
+        dataPanel.setLayout(dataPanelLayout);
+        dataPanelLayout.setHorizontalGroup(
+            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataPanelLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addComponent(jLabel4)
+                .addComponent(xLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(yLabel)
                 .addGap(51, 51, 51))
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(dataPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startLabel)
+                    .addComponent(endLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pontoInicialX, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(pontoFinalX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startXValue, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(endXValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pontoInicialY, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pontoFinalY, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(startYValue, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endYValue, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+        dataPanelLayout.setVerticalGroup(
+            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataPanelLayout.createSequentialGroup()
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(xLabel)
+                    .addComponent(yLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pontoInicialX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pontoInicialY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(startXValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startYValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(startLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pontoFinalX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(pontoFinalY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(endXValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endLabel)
+                    .addComponent(endYValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Iterações"));
-
-        textAreaResult.setColumns(20);
-        textAreaResult.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        textAreaResult.setRows(5);
-        textAreaResult.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jScrollPane1.setViewportView(textAreaResult);
-
-        jLabel6.setText("Defina os pontos:");
-
-        jLabel7.setText("Selecione o algoritmo de rasterização:");
-
-        btResolve.setText("Desenhar Reta");
-        btResolve.setPreferredSize(new java.awt.Dimension(61, 30));
-        btResolve.addActionListener(new java.awt.event.ActionListener() {
+        drawButton.setText("Draw Line");
+        drawButton.setPreferredSize(new java.awt.Dimension(61, 30));
+        drawButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                desenharReta(evt);
+                drawLine(evt);
             }
         });
+
+        scroll.setBorder(javax.swing.BorderFactory.createTitledBorder("Iterations"));
+
+        resultArea.setColumns(20);
+        resultArea.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        resultArea.setRows(5);
+        resultArea.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        scroll.setViewportView(resultArea);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dataPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(drawButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scroll, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(algorithmPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(btResolve, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(dataLabel)
+                            .addComponent(algorithmLabel))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(algorithmLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(algorithmPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(dataLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btResolve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addComponent(drawButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Desenha a reta utilizando o algoritmo selecionado.
+     * Draw the line using the selected algorithm.
      */
-    private void desenharReta(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desenharReta
-        textAreaResult.setText(""); //Limpa o textArea de result
+    private void drawLine(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_drawLine
+        resultArea.setText(""); // Clears the textResult area
         setColor(Color.RED);
 
-        //Seta as coordenadas dos pontos e seta no obejto Pixel
-        setPontoInicial(new Pixel((double) pontoInicialX.getValue(), (double) pontoInicialY.getValue()));
-        setPontoFinal(new Pixel((double) pontoFinalX.getValue(), (double) pontoFinalY.getValue()));
+        // Arrow the coordinates of the points and arrow on the Pixel object
+        setpStart(new Pixel((double) startXValue.getValue(), (double) startYValue.getValue()));
+        setpFinal(new Pixel((double) endXValue.getValue(), (double) endYValue.getValue()));
 
-        //Seta o tipo de algoritmo selecionado
-        if (rbDDA.isSelected()) {
-            setTipoAlgoritimo(RasterizationEnum.DDA);
-        } else if (rbPontoMedio.isSelected()) {
-            setTipoAlgoritimo(RasterizationEnum.MIDPOINT);
+        // Mushroom or type of algorithm selected
+        if (ddaRB.isSelected()) {
+            setAlgorithmType(RasterizationEnum.DDA);
+        } else if (midpointR.isSelected()) {
+            setAlgorithmType(RasterizationEnum.MIDPOINT);
         }
-        App.runResult(this); //Tela principal processa os dados enviados desse painel.
-    }//GEN-LAST:event_desenharReta
+        App.runResult(this); // The main screen processes the data sent from this panel.
+    }//GEN-LAST:event_drawLine
+
+    private void midpointRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_midpointRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_midpointRActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btResolve;
+    private javax.swing.JLabel algorithmLabel;
+    private javax.swing.JPanel algorithmPanel;
     private javax.swing.ButtonGroup buttonGroupAlgoritmos;
+    private javax.swing.JLabel dataLabel;
+    private javax.swing.JPanel dataPanel;
+    private javax.swing.JRadioButton ddaRB;
+    private javax.swing.JButton drawButton;
+    private javax.swing.JLabel endLabel;
+    private javax.swing.JSpinner endXValue;
+    private javax.swing.JSpinner endYValue;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSpinner pontoFinalX;
-    private javax.swing.JSpinner pontoFinalY;
-    private javax.swing.JSpinner pontoInicialX;
-    private javax.swing.JSpinner pontoInicialY;
-    private javax.swing.JRadioButton rbDDA;
-    private javax.swing.JRadioButton rbPontoMedio;
-    private javax.swing.JTextArea textAreaResult;
+    private javax.swing.JRadioButton midpointR;
+    private javax.swing.JTextArea resultArea;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JLabel startLabel;
+    private javax.swing.JSpinner startXValue;
+    private javax.swing.JSpinner startYValue;
+    private javax.swing.JLabel xLabel;
+    private javax.swing.JLabel yLabel;
     // End of variables declaration//GEN-END:variables
 }

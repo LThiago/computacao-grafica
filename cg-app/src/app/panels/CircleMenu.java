@@ -23,9 +23,9 @@ public class CircleMenu extends javax.swing.JPanel {
      */
     private CircleMenu() {
         initComponents();
-        valorRaioY.setVisible(false);
-        label_b.setVisible(false);
-        label_a.setText("Raio: ");
+        yRadiusValue.setVisible(false);
+        bLabel.setVisible(false);
+        aLabel.setText("Raio: ");
     }
     
     public static synchronized CircleMenu getInstance() {
@@ -72,162 +72,162 @@ public class CircleMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroupAlgoritmos = new javax.swing.ButtonGroup();
-        jPanel4 = new javax.swing.JPanel();
-        rbPontoMedio = new javax.swing.JRadioButton();
-        rbTrigonometrica = new javax.swing.JRadioButton();
-        rbEquacaoExplicita = new javax.swing.JRadioButton();
-        jPanel5 = new javax.swing.JPanel();
-        label_a = new javax.swing.JLabel();
-        valorRaioX = new javax.swing.JSpinner();
-        valorRaioY = new javax.swing.JSpinner();
-        label_b = new javax.swing.JLabel();
-        btResolve = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        rbElipse = new javax.swing.JRadioButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        circumferenceAlgorithmLabel = new javax.swing.JLabel();
+        circumferenceAlgorithmPanel = new javax.swing.JPanel();
+        midpointCircumferenceRB = new javax.swing.JRadioButton();
+        explicitEquationRB = new javax.swing.JRadioButton();
+        trigonometricRB = new javax.swing.JRadioButton();
+        ellipseAlgorithmLabel = new javax.swing.JLabel();
+        ellipseAlgorithmPanel = new javax.swing.JPanel();
+        midpointEllipseRB = new javax.swing.JRadioButton();
+        dataLabel = new javax.swing.JLabel();
+        dataPanel = new javax.swing.JPanel();
+        aLabel = new javax.swing.JLabel();
+        xRadiusValue = new javax.swing.JSpinner();
+        bLabel = new javax.swing.JLabel();
+        yRadiusValue = new javax.swing.JSpinner();
+        drawButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(240, 32767));
         setMinimumSize(new java.awt.Dimension(240, 0));
         setPreferredSize(new java.awt.Dimension(240, 779));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        circumferenceAlgorithmLabel.setText("Select the algorithm (Circumference):");
 
-        buttonGroupAlgoritmos.add(rbPontoMedio);
-        rbPontoMedio.setSelected(true);
-        rbPontoMedio.setText("Ponto Médio");
-        rbPontoMedio.addActionListener(new java.awt.event.ActionListener() {
+        circumferenceAlgorithmPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        buttonGroupAlgoritmos.add(midpointCircumferenceRB);
+        midpointCircumferenceRB.setSelected(true);
+        midpointCircumferenceRB.setText("Midpoint");
+        midpointCircumferenceRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecetedAlgoritmo(evt);
             }
         });
 
-        buttonGroupAlgoritmos.add(rbTrigonometrica);
-        rbTrigonometrica.setText("Trigonométrico");
-        rbTrigonometrica.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupAlgoritmos.add(explicitEquationRB);
+        explicitEquationRB.setText("Explicit Equation");
+        explicitEquationRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecetedAlgoritmo(evt);
             }
         });
 
-        buttonGroupAlgoritmos.add(rbEquacaoExplicita);
-        rbEquacaoExplicita.setText("Equação Explícita");
-        rbEquacaoExplicita.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupAlgoritmos.add(trigonometricRB);
+        trigonometricRB.setText("Trigonometric");
+        trigonometricRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selecetedAlgoritmo(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout circumferenceAlgorithmPanelLayout = new javax.swing.GroupLayout(circumferenceAlgorithmPanel);
+        circumferenceAlgorithmPanel.setLayout(circumferenceAlgorithmPanelLayout);
+        circumferenceAlgorithmPanelLayout.setHorizontalGroup(
+            circumferenceAlgorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(circumferenceAlgorithmPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbTrigonometrica)
-                    .addComponent(rbPontoMedio)
-                    .addComponent(rbEquacaoExplicita))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGroup(circumferenceAlgorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(trigonometricRB)
+                    .addComponent(midpointCircumferenceRB)
+                    .addComponent(explicitEquationRB))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        circumferenceAlgorithmPanelLayout.setVerticalGroup(
+            circumferenceAlgorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(circumferenceAlgorithmPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rbPontoMedio)
+                .addComponent(midpointCircumferenceRB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbEquacaoExplicita)
+                .addComponent(explicitEquationRB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbTrigonometrica)
+                .addComponent(trigonometricRB)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ellipseAlgorithmLabel.setText("Select the algorithm (Ellipse):");
 
-        label_a.setText("a:");
+        ellipseAlgorithmPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        valorRaioX.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        valorRaioX.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.1f));
-        valorRaioX.setMaximumSize(new java.awt.Dimension(30, 25));
-        valorRaioX.setMinimumSize(new java.awt.Dimension(30, 25));
-        valorRaioX.setPreferredSize(new java.awt.Dimension(30, 25));
+        buttonGroupAlgoritmos.add(midpointEllipseRB);
+        midpointEllipseRB.setText("Midpoint");
+        midpointEllipseRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selecetedAlgoritmo(evt);
+            }
+        });
 
-        valorRaioY.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        valorRaioY.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.1f));
-        valorRaioY.setMaximumSize(new java.awt.Dimension(30, 25));
-        valorRaioY.setMinimumSize(new java.awt.Dimension(30, 25));
-        valorRaioY.setPreferredSize(new java.awt.Dimension(30, 25));
+        javax.swing.GroupLayout ellipseAlgorithmPanelLayout = new javax.swing.GroupLayout(ellipseAlgorithmPanel);
+        ellipseAlgorithmPanel.setLayout(ellipseAlgorithmPanelLayout);
+        ellipseAlgorithmPanelLayout.setHorizontalGroup(
+            ellipseAlgorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ellipseAlgorithmPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(midpointEllipseRB)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ellipseAlgorithmPanelLayout.setVerticalGroup(
+            ellipseAlgorithmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ellipseAlgorithmPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(midpointEllipseRB)
+                .addContainerGap())
+        );
 
-        label_b.setText("b:");
+        dataLabel.setText("Informe os dados:");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        dataPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        aLabel.setText("a:");
+
+        xRadiusValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        xRadiusValue.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.1f));
+        xRadiusValue.setMaximumSize(new java.awt.Dimension(30, 25));
+        xRadiusValue.setMinimumSize(new java.awt.Dimension(30, 25));
+        xRadiusValue.setPreferredSize(new java.awt.Dimension(30, 25));
+
+        bLabel.setText("b:");
+
+        yRadiusValue.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        yRadiusValue.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.1f));
+        yRadiusValue.setMaximumSize(new java.awt.Dimension(30, 25));
+        yRadiusValue.setMinimumSize(new java.awt.Dimension(30, 25));
+        yRadiusValue.setPreferredSize(new java.awt.Dimension(30, 25));
+
+        javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
+        dataPanel.setLayout(dataPanelLayout);
+        dataPanelLayout.setHorizontalGroup(
+            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(label_a)
+                .addComponent(aLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valorRaioX, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xRadiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(label_b)
+                .addComponent(bLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valorRaioY, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(yRadiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        dataPanelLayout.setVerticalGroup(
+            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valorRaioX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_a)
-                    .addComponent(valorRaioY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_b))
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(xRadiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aLabel)
+                    .addComponent(yRadiusValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bLabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btResolve.setText("Desenhar Circunferência");
-        btResolve.setPreferredSize(new java.awt.Dimension(61, 30));
-        btResolve.addActionListener(new java.awt.event.ActionListener() {
+        drawButton.setText("Draw Circle");
+        drawButton.setPreferredSize(new java.awt.Dimension(61, 30));
+        drawButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 desenhaCirc(evt);
             }
         });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        buttonGroupAlgoritmos.add(rbElipse);
-        rbElipse.setText("Elipse por varredura (Ponto Médio)");
-        rbElipse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selecetedAlgoritmo(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(rbElipse)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rbElipse)
-                .addContainerGap())
-        );
-
-        jLabel1.setText("Selecione o algoritmo (Circunferência):");
-
-        jLabel2.setText("Selecione o algoritmo (Elipse):");
-
-        jLabel3.setText("Informe os dados:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -236,38 +236,36 @@ public class CircleMenu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dataPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ellipseAlgorithmPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(circumferenceAlgorithmPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(btResolve, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(circumferenceAlgorithmLabel)
+                            .addComponent(ellipseAlgorithmLabel)
+                            .addComponent(dataLabel))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(drawButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(circumferenceAlgorithmLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(circumferenceAlgorithmPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(ellipseAlgorithmLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btResolve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addComponent(ellipseAlgorithmPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(dataLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dataPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(drawButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(489, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,17 +276,17 @@ public class CircleMenu extends javax.swing.JPanel {
         setColor(Color.RED);
 
         // Seta o raio
-        setRaioX((float) valorRaioX.getValue());
+        setRaioX((float) xRadiusValue.getValue());
 
         // Seta o tipo de algoritmo selecionado
-        if (rbPontoMedio.isSelected()) {
+        if (midpointCircumferenceRB.isSelected()) {
             setTipoAlgoritimo(CircleEnum.MIDPOINT);
-        } else if (rbEquacaoExplicita.isSelected()) {
+        } else if (explicitEquationRB.isSelected()) {
             setTipoAlgoritimo(CircleEnum.EXPLICIT_EQUATION);
-        } else if (rbTrigonometrica.isSelected()) {
+        } else if (trigonometricRB.isSelected()) {
             setTipoAlgoritimo(CircleEnum.TRIGONOMETRIC);
-        } else if (rbElipse.isSelected()) {
-            setRaioY((float) valorRaioY.getValue());
+        } else if (midpointEllipseRB.isSelected()) {
+            setRaioY((float) yRadiusValue.getValue());
             setTipoAlgoritimo(CircleEnum.ELLIPSE);
         }
         App.runResult(this); //Tela principal processa os dados enviados desse painel.
@@ -298,36 +296,36 @@ public class CircleMenu extends javax.swing.JPanel {
      * Habilita/desabilita componentes de acordo como algoritmo selecionado.
      */
     private void selecetedAlgoritmo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selecetedAlgoritmo
-        if (rbTrigonometrica.isSelected() || rbEquacaoExplicita.isSelected() || rbPontoMedio.isSelected()) {
-            valorRaioY.setVisible(false);
-            label_b.setVisible(false);
-            label_a.setText("Raio:");
-            btResolve.setText("Desenhar Circunferência");
+        if (trigonometricRB.isSelected() || explicitEquationRB.isSelected() || midpointCircumferenceRB.isSelected()) {
+            yRadiusValue.setVisible(false);
+            bLabel.setVisible(false);
+            aLabel.setText("Raio:");
+            drawButton.setText("Desenhar Circunferência");
         } else {
-            valorRaioY.setVisible(true);
-            label_b.setVisible(true);
-            label_a.setText("a:");
-            btResolve.setText("Desenhar Elipse");
+            yRadiusValue.setVisible(true);
+            bLabel.setVisible(true);
+            aLabel.setText("a:");
+            drawButton.setText("Desenhar Elipse");
         }
     }//GEN-LAST:event_selecetedAlgoritmo
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btResolve;
+    private javax.swing.JLabel aLabel;
+    private javax.swing.JLabel bLabel;
     private javax.swing.ButtonGroup buttonGroupAlgoritmos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JLabel label_a;
-    private javax.swing.JLabel label_b;
-    private javax.swing.JRadioButton rbElipse;
-    private javax.swing.JRadioButton rbEquacaoExplicita;
-    private javax.swing.JRadioButton rbPontoMedio;
-    private javax.swing.JRadioButton rbTrigonometrica;
-    private javax.swing.JSpinner valorRaioX;
-    private javax.swing.JSpinner valorRaioY;
+    private javax.swing.JLabel circumferenceAlgorithmLabel;
+    private javax.swing.JPanel circumferenceAlgorithmPanel;
+    private javax.swing.JLabel dataLabel;
+    private javax.swing.JPanel dataPanel;
+    private javax.swing.JButton drawButton;
+    private javax.swing.JLabel ellipseAlgorithmLabel;
+    private javax.swing.JPanel ellipseAlgorithmPanel;
+    private javax.swing.JRadioButton explicitEquationRB;
+    private javax.swing.JRadioButton midpointCircumferenceRB;
+    private javax.swing.JRadioButton midpointEllipseRB;
+    private javax.swing.JRadioButton trigonometricRB;
+    private javax.swing.JSpinner xRadiusValue;
+    private javax.swing.JSpinner yRadiusValue;
     // End of variables declaration//GEN-END:variables
 }

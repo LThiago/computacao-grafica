@@ -134,7 +134,7 @@ public class ImageMenu extends javax.swing.JPanel {
 
         buttonGroupAlgoritmos.add(rbTranslacao);
         rbTranslacao.setSelected(true);
-        rbTranslacao.setText("Translação");
+        rbTranslacao.setText("Translation");
         rbTranslacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectedTransformacao(evt);
@@ -142,7 +142,7 @@ public class ImageMenu extends javax.swing.JPanel {
         });
 
         buttonGroupAlgoritmos.add(rbRotacao);
-        rbRotacao.setText("Rotação");
+        rbRotacao.setText("Rotation");
         rbRotacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectedTransformacao(evt);
@@ -150,7 +150,7 @@ public class ImageMenu extends javax.swing.JPanel {
         });
 
         buttonGroupAlgoritmos.add(rbEscala);
-        rbEscala.setText("Escala");
+        rbEscala.setText("Scale");
         rbEscala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectedTransformacao(evt);
@@ -158,7 +158,7 @@ public class ImageMenu extends javax.swing.JPanel {
         });
 
         buttonGroupAlgoritmos.add(rbReflexao);
-        rbReflexao.setText("Reflexão");
+        rbReflexao.setText("Reflection");
         rbReflexao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectedTransformacao(evt);
@@ -166,7 +166,7 @@ public class ImageMenu extends javax.swing.JPanel {
         });
 
         buttonGroupAlgoritmos.add(rbCisalhamento);
-        rbCisalhamento.setText("Cisalhamento");
+        rbCisalhamento.setText("Shear");
         rbCisalhamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectedTransformacao(evt);
@@ -207,7 +207,7 @@ public class ImageMenu extends javax.swing.JPanel {
                 .addGap(46, 46, 46))
         );
 
-        btResolve.setText("Aplicar Transformação");
+        btResolve.setText("Apply");
         btResolve.setPreferredSize(new java.awt.Dimension(61, 30));
         btResolve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,7 +241,7 @@ public class ImageMenu extends javax.swing.JPanel {
         panelDados1Layout.setHorizontalGroup(
             panelDados1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDados1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(lbDado1)
                 .addGap(18, 18, 18)
                 .addComponent(valorDado1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +302,7 @@ public class ImageMenu extends javax.swing.JPanel {
         panelObjeto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panelObjeto.setMaximumSize(new java.awt.Dimension(220, 106));
 
-        btSelctImage1.setText("Abrir Imagem");
+        btSelctImage1.setText("Open Image");
         btSelctImage1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btSelctImage1.setPreferredSize(new java.awt.Dimension(121, 30));
         btSelctImage1.addActionListener(new java.awt.event.ActionListener() {
@@ -311,7 +311,7 @@ public class ImageMenu extends javax.swing.JPanel {
             }
         });
 
-        btSelctImage2.setText("Resetar");
+        btSelctImage2.setText("Reset");
         btSelctImage2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btSelctImage2.setPreferredSize(new java.awt.Dimension(121, 30));
         btSelctImage2.addActionListener(new java.awt.event.ActionListener() {
@@ -341,9 +341,9 @@ public class ImageMenu extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Selecione a transformação:");
+        jLabel1.setText("Select Transformation:");
 
-        jLabel2.setText("Informe os dados:");
+        jLabel2.setText("Inform Data:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
