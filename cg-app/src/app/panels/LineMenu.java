@@ -11,9 +11,9 @@ import javax.swing.JTextArea;
  *
  * @author Luis Thiago <lthiago.github.io>
  */
-public class PanelMenuRasterizacao extends javax.swing.JPanel {
+public class LineMenu extends javax.swing.JPanel {
 
-    private static PanelMenuRasterizacao instance;
+    private static LineMenu instance;
 
     private Pixel pontoInicial;
     private Pixel pontoFinal;
@@ -23,14 +23,14 @@ public class PanelMenuRasterizacao extends javax.swing.JPanel {
     /**
      * Construtor padrão.
      */
-    private PanelMenuRasterizacao() {
+    private LineMenu() {
         initComponents();
         textAreaResult.setEditable(false);
     }
     
-    public static synchronized PanelMenuRasterizacao getInstance() {
+    public static synchronized LineMenu getInstance() {
         if (instance == null) {
-            instance = new PanelMenuRasterizacao();
+            instance = new LineMenu();
         }
         return instance;
     }

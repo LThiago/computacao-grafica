@@ -9,9 +9,9 @@ import java.awt.Color;
  *
  * @author Luis Thiago <lthiago.github.io>
  */
-public class PanelMenuCircunferencia extends javax.swing.JPanel {
+public class CircleMenu extends javax.swing.JPanel {
 
-    private static PanelMenuCircunferencia instance;
+    private static CircleMenu instance;
 
     private float raioX;
     private float raioY;
@@ -21,16 +21,16 @@ public class PanelMenuCircunferencia extends javax.swing.JPanel {
     /**
      * Construtor padrão.
      */
-    private PanelMenuCircunferencia() {
+    private CircleMenu() {
         initComponents();
         valorRaioY.setVisible(false);
         label_b.setVisible(false);
         label_a.setText("Raio: ");
     }
     
-    public static synchronized PanelMenuCircunferencia getInstance() {
+    public static synchronized CircleMenu getInstance() {
         if (instance == null) {
-            instance = new PanelMenuCircunferencia();
+            instance = new CircleMenu();
         }
         return instance;
     }

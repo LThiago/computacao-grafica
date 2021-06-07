@@ -17,9 +17,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Luis Thiago <lthiago.github.io>
  */
-public class PanelMenuImagem extends javax.swing.JPanel {
+public class ImageMenu extends javax.swing.JPanel {
 
-    private static PanelMenuImagem instance;
+    private static ImageMenu instance;
     public static Image imagem;
 
     private double valorX, valorY; //usando na translacao, escala, cisalhamento
@@ -31,9 +31,9 @@ public class PanelMenuImagem extends javax.swing.JPanel {
     private final DefaultListModel<String> modelList;
     private int[][] imagemMatriz;
 
-    public static synchronized PanelMenuImagem getInstance() {
+    public static synchronized ImageMenu getInstance() {
         if (instance == null) {
-            instance = new PanelMenuImagem();
+            instance = new ImageMenu();
         }
         return instance;
     }
@@ -41,7 +41,7 @@ public class PanelMenuImagem extends javax.swing.JPanel {
     /**
      * Construtor padrão.
      */
-    private PanelMenuImagem() {
+    private ImageMenu() {
         modelList = new DefaultListModel();
 
         initComponents();
@@ -355,7 +355,7 @@ public class PanelMenuImagem extends javax.swing.JPanel {
                     .addComponent(panelObjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelDados2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelDados1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelDados1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)

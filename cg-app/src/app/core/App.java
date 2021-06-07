@@ -1,15 +1,15 @@
 // TODO
 package app.core;
 
-import app.dialog.DialogSobre;
+import app.dialog.AboutDialog;
 import app.enums.RasterizationEnum;
 import app.extra.FrameHeartBeating;
 import app.panels.Menu2D;
 import app.panels.Menu3D;
-import app.panels.PanelMenuCircunferencia;
-import app.panels.PanelMenuImagem;
-import app.panels.PanelMenuRasterizacao;
-import app.panels.PanelMenuRecorteReta;
+import app.panels.CircleMenu;
+import app.panels.ImageMenu;
+import app.panels.LineMenu;
+import app.panels.LineClippingMenu;
 import app.extra.CartesianPlane;
 import app.lines.Circle;
 import app.lines.Pixel;
@@ -34,23 +34,23 @@ import javax.swing.JPanel;
  */
 public class App extends javax.swing.JFrame {
 
-    private final PanelMenuRasterizacao panelMenuRasterizacao;
-    private final PanelMenuCircunferencia panelMenuCircunferencia;
+    private final LineMenu panelMenuRasterizacao;
+    private final CircleMenu panelMenuCircunferencia;
     private final Menu2D panelMenu2D;
     private final Menu3D panelMenu3D;
-    private final PanelMenuRecorteReta panelMenuRecorteReta;
-    private final PanelMenuImagem panelMenuImagem;
+    private final LineClippingMenu panelMenuRecorteReta;
+    private final ImageMenu panelMenuImagem;
 
     /**
      * Construtor padrão.
      */
     public App() {
-        panelMenuRasterizacao = PanelMenuRasterizacao.getInstance();
-        panelMenuCircunferencia = PanelMenuCircunferencia.getInstance();
+        panelMenuRasterizacao = LineMenu.getInstance();
+        panelMenuCircunferencia = CircleMenu.getInstance();
         panelMenu2D = Menu2D.getInstance();
         panelMenu3D = Menu3D.getInstance();
-        panelMenuRecorteReta = PanelMenuRecorteReta.getInstance();
-        panelMenuImagem = PanelMenuImagem.getInstance();
+        panelMenuRecorteReta = LineClippingMenu.getInstance();
+        panelMenuImagem = ImageMenu.getInstance();
         
         initComponents();
         sistemaCoordenadas();
@@ -450,7 +450,7 @@ public class App extends javax.swing.JFrame {
      * Abre painel que exibe informações do projeto.
      */
     private void menuSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSobreMouseClicked
-         new DialogSobre(this, true).setVisible(true);
+         new AboutDialog(this, true).setVisible(true);
     }//GEN-LAST:event_menuSobreMouseClicked
 
     /**
@@ -582,23 +582,23 @@ public class App extends javax.swing.JFrame {
      * @param instance Instância de algum painel de opções.
      */
     public static void runResult(Object instance) {
-        if (instance instanceof PanelMenuRasterizacao) {
-            processaRasterizacaoReta(PanelMenuRasterizacao.getInstance());
-        } else if (instance instanceof PanelMenuCircunferencia) {
-            processaRasterizacaoCircunferencia(PanelMenuCircunferencia.getInstance());
+        if (instance instanceof LineMenu) {
+            processaRasterizacaoReta(LineMenu.getInstance());
+        } else if (instance instanceof CircleMenu) {
+            processaRasterizacaoCircunferencia(CircleMenu.getInstance());
         } else if (instance instanceof Menu2D) {
             processaTransformacoes2D(Menu2D.getInstance());
         } else if (instance instanceof Menu3D) {
             processaTransformacoes3D(Menu3D.getInstance());
-        } else if (instance instanceof PanelMenuImagem) {
-            processaTransformacoesImagem(PanelMenuImagem.getInstance());
+        } else if (instance instanceof ImageMenu) {
+            processaTransformacoesImagem(ImageMenu.getInstance());
         }
     }
 
     /**
      * Processa o pedido vindo do Painel de rasterização de reta.
      */
-    private static void processaRasterizacaoReta(PanelMenuRasterizacao menu) {
+    private static void processaRasterizacaoReta(LineMenu menu) {
         Rasterization rast = Rasterization.getInstance();
         CartesianPlane.getInstance().redraw();
 
@@ -612,7 +612,7 @@ public class App extends javax.swing.JFrame {
     /**
      * Processa o pedido vindo do Painel de rasterização de circunferência.
      */
-    private static void processaRasterizacaoCircunferencia(PanelMenuCircunferencia menu) {
+    private static void processaRasterizacaoCircunferencia(CircleMenu menu) {
         Circle circ = Circle.getInstance();
 
         switch (menu.getTipoAlgoritimo()) {
@@ -754,10 +754,10 @@ public class App extends javax.swing.JFrame {
     /**
      * Processa o pedido vindo da tela de transformações na Image.
      */
-    private static void processaTransformacoesImagem(PanelMenuImagem menu) {
-        if (PanelMenuImagem.imagem != null) {
+    private static void processaTransformacoesImagem(ImageMenu menu) {
+        if (ImageMenu.imagem != null) {
             TransformationsImage transImg = TransformationsImage.getInstance();
-            Image imagem = PanelMenuImagem.imagem;
+            Image imagem = ImageMenu.imagem;
 
             switch (menu.getTipoAlgoritimo()) {
                 case TRANSLATION:

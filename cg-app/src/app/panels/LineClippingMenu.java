@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
  *
  * @author Luis Thiago <lthiago.github.io>
  */
-public class PanelMenuRecorteReta extends javax.swing.JPanel {
+public class LineClippingMenu extends javax.swing.JPanel {
 
-    private static PanelMenuRecorteReta instance;
+    private static LineClippingMenu instance;
 
     private Pixel pontoInicial, pontoFinal;
     private Color color;
@@ -28,13 +28,13 @@ public class PanelMenuRecorteReta extends javax.swing.JPanel {
     /**
      * Construtor padrão.
      */
-    private PanelMenuRecorteReta() {
+    private LineClippingMenu() {
         initComponents();
     }
 
-    public static synchronized PanelMenuRecorteReta getInstance() {
+    public static synchronized LineClippingMenu getInstance() {
         if (instance == null) {
-            instance = new PanelMenuRecorteReta();
+            instance = new LineClippingMenu();
         }
         return instance;
     }
@@ -168,7 +168,7 @@ public class PanelMenuRecorteReta extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(yMax, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(xMax, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -195,7 +195,7 @@ public class PanelMenuRecorteReta extends javax.swing.JPanel {
                     .addComponent(yMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btJanela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
